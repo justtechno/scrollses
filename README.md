@@ -9,4 +9,4 @@ I will answer - the ncurses built-in scrolling can scroll only down, not up so y
 You can see docs in docs/ directory and examples in examples/ directory.
 
 # license
-the library is licensed under LGPLv3, see [license](LICENSE)
+the library is licensed under LGPLv2.1, see [license](LICENSE)
