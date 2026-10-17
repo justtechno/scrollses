@@ -1,5 +1,5 @@
 # scrollcurses
-A simple library implementing scrolling in ncurses with pure C11.
+A simple library implementing scrolling in ncurses with C23.
 
 # why was it writen
 Some peoples can ask - "why you made it, ncurses already have a scrolling".

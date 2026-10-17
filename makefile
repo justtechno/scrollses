@@ -2,13 +2,13 @@ cc := gcc
 
 
 all:
-	$(cc) -c src/scrollses.c -o scrollses.o
+	$(cc) -std=c23 -c src/scrollses.c -o scrollses.o
 	ar rcs libscrollses.a scrollses.o
 
 
 install: all
 	cp libscrollses.a /usr/local/lib/
-	cp include/scrollses.h /usr/local/include/
+	cp src/scrollses.h /usr/local/include/
 
 uninstall:
 	rm /usr/local/lib/libscrollses.a
