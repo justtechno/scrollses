@@ -21,7 +21,7 @@ sudo make reinstall
 and to use it in project just add -lscrollses flag to gcc
 
 
-## Using
+## Usage
 
 ### List of structures
 
@@ -105,3 +105,10 @@ Declaration: `void scroll_clear(scroll_state *scroll)`
 Purpose: terminate scroll_state structure and free dynamic array in it.
 Arguments:
 - `scroll_state *scroll` - a pointer to scroll_state to terminate.
+
+Declaration: `void scroll_edit(scroll_state *scroll, int index, char *newwal)`
+Purpose: edit `arr` element of `scroll_state` structure to new value by index.
+Arguments:
+- `scroll_state *scroll` - a pointer to scroll_state where edit.
+- `int index` - an index of element to edit.
+- `char *newwal` - new value.

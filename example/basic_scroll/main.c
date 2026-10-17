@@ -68,6 +68,14 @@ int main() {
 				scroll_pop_target(&example, 5);
 				break;
 
+			case KEY_F(5):
+				scroll_edit(&example, 5, "random text");
+				break;
+
+			case KEY_F(6):
+				scroll_edit(&example, 5, "second random text");
+				break;
+
 			case 'j':
 				scroll_down(&example);
 				break;

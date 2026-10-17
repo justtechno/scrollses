@@ -31,6 +31,14 @@ typedef struct {
 **/
 void scroll_init(scroll_state *scroll, WINDOW *win, int scroll_cap);
 
+/*
+ * @brief Edit index of array.
+ *
+ * @param scroll Pointer to scroll where edit.
+ * @param index Index to edit.
+ * @param newwal New value.
+**/
+void scroll_edit(scroll_state *scroll, int index, char *newwal);
 
 /*
  * @brief Append element to scroll_state.

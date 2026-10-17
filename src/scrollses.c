@@ -98,6 +98,18 @@ end:
 	;
 }
 
+/*
+ * @brief Edit index of array.
+ *
+ * @param scroll Pointer to scroll where edit.
+ * @param index Index to edit.
+ * @param newwal New value.
+**/
+void scroll_edit(scroll_state *scroll, int index, char *newwal) {
+	scroll->arr[index] = strdup(newwal);
+	scroll_print(*scroll);
+}
+
 
 /*
  * @brief Scroll up visible zone.
@@ -123,7 +135,7 @@ void scroll_pop_target(scroll_state *scroll, int index) {
 	if (index < scroll->arr_count) {
 		for (int i = index; i < scroll->arr_cap; i++) {
 			if (i < scroll->arr_cap-1) {
-				scroll->arr[i] = scroll->arr[i+1];
+				scroll->arr[i] = strdup(scroll->arr[i+1]);
 			}
 		}
 	scroll->arr_count--;
