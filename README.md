@@ -2,7 +2,7 @@
 A simple library implementing scrolling in ncurses with C23.
 
 # why was it writen
-Some peoples can ask - "why you made it, ncurses already have a scrolling".
+Some peoples can ask - "why did you make it, ncurses already have a scrolling".
 I will answer - the ncurses built-in scrolling can scroll only down, not up so you can not use it for things like text editors or file managers and other stuff when you need to store all the data of scrollbar(which actually means allmost all modern TUI software).
 
 # how to use it
