@@ -6,6 +6,10 @@
 #include "scrollses.h"
 
 
+int focus(scroll_state scroll) {
+	return scroll.visible_start + (scroll.arr_count / 2);
+}
+
 /* @brief Initialize scroll_state structure
  *
  * @param scroll Pointer to structure to initialize
@@ -18,6 +22,7 @@ void scroll_init(scroll_state *scroll, WINDOW *win, int scroll_cap) {
 	scroll->window=win;
 	scroll->visible_start=0;
 	scroll->visible_end=getmaxy(scroll->window)-1;
+	scroll->focus = focus(*scroll);
 }
 
 
@@ -78,6 +83,11 @@ void scroll_print(scroll_state scroll) {
 	for (int i = scroll.visible_start; i < scroll.visible_end; i++) {
 		if (i < scroll.arr_count) {
 			wprintw(scroll.window, "%s\n", scroll.arr[i]);
+			if (i == scroll.focus) {	
+				attron(A_BOLD);
+				wprintw(scroll.window, "%s\n", scroll.arr[i]);
+				attroff(A_BOLD);
+			}
 		} else {
 		// breaking cycle of array index out of bounds
 		break;
@@ -92,7 +102,7 @@ void scroll_print(scroll_state scroll) {
 **/
 void scroll_down(scroll_state *scroll) {
 	if (scroll->visible_end == scroll->arr_cap) { goto end; }
-	scroll->visible_start++; scroll->visible_end++;
+	scroll->visible_start++; scroll->visible_end++; scroll->focus = focus(*scroll);
 	scroll_print(*scroll);
 end:
 	;
@@ -118,7 +128,7 @@ void scroll_edit(scroll_state *scroll, int index, char *newwal) {
 **/
 void scroll_up(scroll_state *scroll) {
 	if (scroll->visible_start == 0) { goto end; }
-	scroll->visible_start--; scroll->visible_end--;
+	scroll->visible_start--; scroll->visible_end--; scroll->focus = focus(*scroll);
 	scroll_print(*scroll);
 end:
 	;
@@ -135,7 +145,7 @@ void scroll_pop_target(scroll_state *scroll, int index) {
 	if (index < scroll->arr_count) {
 		for (int i = index; i < scroll->arr_cap; i++) {
 			if (i < scroll->arr_cap-1) {
-				scroll->arr[i] = strdup(scroll->arr[i+1]);
+				scroll->arr[i] = scroll->arr[i+1];
 			}
 		}
 	scroll->arr_count--;

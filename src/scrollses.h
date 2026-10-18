@@ -12,6 +12,7 @@ typedef struct {
 	// properties for view
 	int visible_start;
 	int visible_end;
+	int focus;
 
 	// properties for array
 	int arr_cap;
